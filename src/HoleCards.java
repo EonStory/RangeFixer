@@ -2,7 +2,7 @@
 public class HoleCards {
 	
 	//using 2652 instead of 1326 because indexing holecards will be faster this way.
-	//computing the addres of holecards[x,y] takes far less resources this way
+	//computing the address of holecards[x,y] takes far less resources this way
 	private static HoleCards[] allHoleCards = new HoleCards[2652];
 	
 	private Card[] cards = new Card[2];
@@ -35,7 +35,7 @@ public class HoleCards {
 		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()].index;
 	}
 	
-	public HoleCards getHoleCards(Card c1, Card c2) {
+	public static HoleCards getHoleCards(Card c1, Card c2) {
 		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()];
 	}
 	
