@@ -8,10 +8,10 @@ public class HoleCards {
 	private Card[] cards = new Card[2];
 	private int index;
 	
-	private HoleCards(Card firstCard, Card secondCard) {
-		cards[0] = firstCard;
-		cards[1] = secondCard;
-		index = firstCard.getIndex() * 52 + secondCard.getIndex();
+	private HoleCards(Card c1, Card c2) {
+		cards[0] = c1;
+		cards[1] = c2;
+		index = c1.getIndex() * 51 + c2.getIndex();
 	}
 	
 	static {
@@ -29,6 +29,14 @@ public class HoleCards {
 	
 	public int getIndex() {
 		return index;
+	}
+	
+	public int getIndex(Card c1, Card c2) {		
+		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()].index;
+	}
+	
+	public HoleCards getHoleCards(Card c1, Card c2) {
+		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()];
 	}
 	
 	public String toString() {

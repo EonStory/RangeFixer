@@ -5,6 +5,7 @@ public class Flop {
 	private static Flop[] allFlops = new Flop[132600];
 	
 	public Card[] cards;
+	public int index;
 	
 	static {
 		int counter = 0;
@@ -15,6 +16,7 @@ public class Flop {
 						continue;
 					}
 					allFlops[counter] = new Flop(Card.getCard(i), Card.getCard(j), Card.getCard(k));
+					counter++;
 				}
 			}
 		}
@@ -22,5 +24,10 @@ public class Flop {
 	
 	private Flop(Card c1, Card c2, Card c3) {
 		this.cards = new Card[]{c1, c2, c3};
+		index = c1.getIndex() * 51 * 50 + c2.getIndex() * 50 + c3.getIndex(); 
+	}
+	
+	public Flop getFlop(Card c1, Card c2, Card c3) {
+		return allFlops[c1.getIndex() * 51 * 50 + c2.getIndex() * 50 + c3.getIndex()];
 	}
 }
