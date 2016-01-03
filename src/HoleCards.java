@@ -6,10 +6,12 @@ public class HoleCards {
 	private static HoleCards[] allHoleCards = new HoleCards[2652];
 	
 	private Card[] cards = new Card[2];
+	private int index;
 	
 	private HoleCards(Card firstCard, Card secondCard) {
 		cards[0] = firstCard;
 		cards[1] = secondCard;
+		index = firstCard.getIndex() * 52 + secondCard.getIndex();
 	}
 	
 	static {
@@ -23,6 +25,10 @@ public class HoleCards {
 				allHoleCards[counter] = new HoleCards(Card.getCard(i), Card.getCard(j));
 			}
 		}
+	}
+	
+	public int getIndex() {
+		return index;
 	}
 	
 	public String toString() {

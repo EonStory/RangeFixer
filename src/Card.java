@@ -5,6 +5,7 @@ public class Card {
 	
 	private int rank;
 	private int suit;
+	private int index;
 	
 	private static String[] rankNames = new String[] {"A","2","3","4","5","6","7","8","9","T","J","Q","K"};
 	private static String[] suitNames = new String[] {"s","h","d","c"};
@@ -18,6 +19,7 @@ public class Card {
 	private Card(int rank, int suit) {
 		this.rank = rank;
 		this.suit = suit;
+		index = suit * 13 + rank;
 	}
 	
 	//create all cards
@@ -29,6 +31,10 @@ public class Card {
 				counter++;
 			}
 		}
+	}
+	
+	public int getIndex() {
+		return index;
 	}
 	
 	public static Card getCard(int x) {
@@ -48,4 +54,5 @@ public class Card {
 		}
 		return false;
 	}
+	
 }
