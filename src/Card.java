@@ -1,19 +1,21 @@
 
 public class Card {
 	
-	public static Card[] allCards = new Card[52];
+	private static Card[] allCards = new Card[52];
 	
 	int rank;
 	int suit;
 	
-	public static String[] rankNames = new String[] {"A","2","3","4","5","6","7","8","9","T","J","Q","K"};
-	public static String[] suitNames = new String[] {"s","h","d","c"};
+	private static String[] rankNames = new String[] {"A","2","3","4","5","6","7","8","9","T","J","Q","K"};
+	private static String[] suitNames = new String[] {"s","h","d","c"};
 	
 	public String toString() {
 		return rankNames[rank] + suitNames[suit];
 	}
 	
-	public Card(int rank, int suit) {
+	
+	//new cards cannot be constructed outside of this class
+	private Card(int rank, int suit) {
 		this.rank = rank;
 		this.suit = suit;
 	}
@@ -27,5 +29,9 @@ public class Card {
 				counter++;
 			}
 		}
+	}
+	
+	public static Card getCard(int x) {
+		return allCards[x];
 	}
 }
