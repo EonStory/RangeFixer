@@ -31,7 +31,7 @@ public class HoleCards {
 		return index;
 	}
 	
-	public int getIndex(Card c1, Card c2) {		
+	public static int getIndex(Card c1, Card c2) {		
 		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()].index;
 	}
 	

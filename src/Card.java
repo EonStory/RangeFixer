@@ -37,6 +37,10 @@ public class Card {
 		return index;
 	}
 	
+	public static int getIndex(Card c) {
+		return c.index;
+	}
+	
 	public static Card getCard(int x) {
 		return allCards[x];
 	}
