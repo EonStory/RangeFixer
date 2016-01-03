@@ -3,8 +3,8 @@ public class Card {
 	
 	private static Card[] allCards = new Card[52];
 	
-	int rank;
-	int suit;
+	private int rank;
+	private int suit;
 	
 	private static String[] rankNames = new String[] {"A","2","3","4","5","6","7","8","9","T","J","Q","K"};
 	private static String[] suitNames = new String[] {"s","h","d","c"};
@@ -33,5 +33,19 @@ public class Card {
 	
 	public static Card getCard(int x) {
 		return allCards[x];
+	}
+	
+	public static boolean sameSuit(Card c1, Card c2) {
+		if (c1.suit == c2.suit) {
+			return true;
+		}
+		return false;
+	}
+	
+	public static boolean sameRank(Card c1, Card c2) {
+		if (c1.rank == c2.rank) {
+			return true;
+		}
+		return false;
 	}
 }
