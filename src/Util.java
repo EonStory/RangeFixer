@@ -1,5 +1,9 @@
 
-public class Util {
+public final class Util {
+	
+	//private constructor
+	private Util() {		
+	}
 	
 	//returns all suit isomorphisms of a given set. eg [Ah 2c] returns [[Ah 2c], [Ah 2d],[Ah 2s],[As 2c], .... [Ac, Ad]]
 	public static Card[][] allSuits(Card[] cards) {

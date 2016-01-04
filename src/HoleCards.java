@@ -1,6 +1,7 @@
 
 public class HoleCards {
 	
+	//2652 = 52* 51, meaning [x, y] is not the same as [y, x]
 	//using 2652 instead of 1326 because indexing holecards will be faster this way.
 	//computing the address of holecards[x,y] takes far less resources this way
 	private static HoleCards[] allHoleCards = new HoleCards[2652];
