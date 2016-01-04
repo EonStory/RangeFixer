@@ -2,6 +2,7 @@
 //Expert level analysis by Kreiger(TM)
 public class helloworld {
 		public static void main(String[] args) {
+			throw new UnsupportedOperationException();
 			System.out.println("hello world");
 		}
 }
