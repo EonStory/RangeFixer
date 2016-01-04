@@ -74,7 +74,7 @@ public class Card {
 				}
 			}
 			
-		return new Card(r,s);
+		return Card.getCard(s * 13 + r);
 	}
 	
 }
