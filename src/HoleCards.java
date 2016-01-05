@@ -32,11 +32,17 @@ public class HoleCards {
 		return index;
 	}
 	
-	public static int getIndex(Card c1, Card c2) {		
+	public static int getIndex(Card c1, Card c2) {
+		if (c1.getIndex() == c2.getIndex()) {
+			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
+		}
 		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()].index;
 	}
 	
 	public static HoleCards getHoleCards(Card c1, Card c2) {
+		if (c1.getIndex() == c2.getIndex()) {
+			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
+		}
 		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()];
 	}
 	
