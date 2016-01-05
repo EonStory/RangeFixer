@@ -1,6 +1,21 @@
 
 public class FileParser {
 
+	private static int[] AK(String card1, String card2) {
+		String[] suitNames = new String[] {"s","h","d","c"};
+		int counter=0;
+		int[] solution = new int[16];
+			for(int i=0 ; i<4 ; i++){
+				Card card11 = Card.getCard(card1, suitNames[i]);
+				for(int j=0 ; j<4 ; j++){
+					solution[counter]=HoleCards.getIndex(card11, Card.getCard(card2, suitNames[j]));
+					counter++;
+				}
+			}
+			return solution;
+		}
+
+	
 	public static Range reader(String fileName) {
 		double[] weights = new double[2652];
 		for(int i = 0 ; i<2652 ; i++)
@@ -287,18 +302,19 @@ public class FileParser {
 	}
 	
 	
-	
+
 	
 	
 	public static void main(String[] args) {
 		FileParser f = new FileParser();
-		Card a = Card.getCard(1);
-		Card b = Card.getCard(2);
+		Card a = Card.getCard(0);
+		Card b = Card.getCard(1);
 		HoleCards h = HoleCards.getHoleCards(a,b);
 		String nl = "0.7";		
 		String n = nl.substring(0,1);
 		double aDouble = Double.parseDouble(nl);
-		System.out.println(aDouble);
+		for(int i=0;i<16;i++)
+		System.out.println(""+HoleCards.getIndex(a, b));
 		
 	}
 }

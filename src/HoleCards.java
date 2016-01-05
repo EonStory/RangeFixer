@@ -12,7 +12,10 @@ public class HoleCards {
 	private HoleCards(Card c1, Card c2) {
 		cards[0] = c1;
 		cards[1] = c2;
-		index = c1.getIndex() * 51 + c2.getIndex();
+		if(c1.getIndex()<c2.getIndex())
+			index = c1.getIndex() * 51 + c2.getIndex() - 1 ;
+		else
+			index = c1.getIndex() * 51 + c2.getIndex() ;
 	}
 	
 	static {
@@ -24,6 +27,7 @@ public class HoleCards {
 					continue;
 				}
 				allHoleCards[counter] = new HoleCards(Card.getCard(i), Card.getCard(j));
+				counter++;
 			}
 		}
 	}
@@ -36,17 +40,26 @@ public class HoleCards {
 		if (c1.getIndex() == c2.getIndex()) {
 			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
 		}
-		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()].index;
+		if(c1.getIndex()<c2.getIndex())
+			return  allHoleCards[c1.getIndex() * 51 + c2.getIndex() - 1].index;
+		else
+			return allHoleCards[c1.getIndex() * 51 + c2.getIndex()].index;
+				
+				
 	}
 	
 	public static HoleCards getHoleCards(Card c1, Card c2) {
 		if (c1.getIndex() == c2.getIndex()) {
 			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
 		}
-		return allHoleCards[c1.getIndex() * 51 + c2.getIndex()];
+		if(c1.getIndex()<c2.getIndex())
+			return  allHoleCards[c1.getIndex() * 51 + c2.getIndex() - 1];
+		else
+			return allHoleCards[c1.getIndex() * 51 + c2.getIndex()];
 	}
 	
 	public String toString() {
 		return cards[0].toString() + cards[1].toString();
 	}
+	
 }
