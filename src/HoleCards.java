@@ -38,6 +38,7 @@ public class HoleCards {
 		int x;
 		int y;
 		
+		//bigger card always goes second!
 		if (c1.getIndex() < c2.getIndex()) {
 			x = c1.getIndex();
 			y = c2.getIndex();
@@ -46,7 +47,6 @@ public class HoleCards {
 			x = c2.getIndex();
 			y = c1.getIndex();
 		}
-		
 		
 		//triangular numbers!
 		int cardsBefore = 0;
@@ -68,18 +68,5 @@ public class HoleCards {
 	
 	public String toString() {
 		return cards[0].toString() + cards[1].toString();
-	}
-	
-	//takes O(n^2)
-	public static boolean isCollision(HoleCards[] hcs) {
-		for (int i = 0; i < hcs.length; i++) {
-			for (int j = i + 1; j < hcs.length; j++) {//if any of the 4 cards are equal, return false
-				if (hcs[i].cards[0].getIndex() == hcs[j].cards[0].getIndex() || hcs[i].cards[0].getIndex() == hcs[j].cards[1].getIndex() || 
-						hcs[i].cards[1].getIndex() == hcs[j].cards[0].getIndex() || hcs[i].cards[1].getIndex() == hcs[j].cards[1].getIndex()) {
-					return false;
-				}
-			}
-		}
-		return true;
-	}
+	}	
 }

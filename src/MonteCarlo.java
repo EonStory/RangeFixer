@@ -16,10 +16,13 @@ public class MonteCarlo {
 				randomlySelectedHoleCards[j] = foldedRanges[j].randomHoleCards();
 			}
 			
+			//make this work with cards somehow.
+			/*
 			if (HoleCards.isCollision(randomlySelectedHoleCards)) {
 				continue mainloop;
 			}
-						
+			*/
+			
 			counter[randomlySelectedHoleCards[0].getIndex()]++;
 			succesfulSimulations++;
 		}

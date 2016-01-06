@@ -77,5 +77,21 @@ public class Card {
 		}
 			
 		return Card.getCard(s * 13 + r);
-	}	
+	}
+	
+	
+	//takes O(n^2)
+	//slightly inefficient when used to compare set of holecards
+	//because checking if two of the holecards are equal is redundant
+	public static boolean isCollision(Card[] cards) {
+		for (int i = 0; i < cards.length; i++) {
+			for (int j = i + 1; j < cards.length; j++) {
+				if (cards[i].getIndex() == cards[j].getIndex()) {
+					return false;
+				}
+			}
+		}
+		return true;
+	}
+	
 }
