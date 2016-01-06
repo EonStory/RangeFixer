@@ -1,11 +1,11 @@
 
 public class Range {
 	
-	private double[] weights = new double[2652];
+	private double[] weights = new double[1326];
 	
 	public Range(double[] weights) {
 		
-		if (weights.length != 2652) {
+		if (weights.length != 1326) {
 			throw new IllegalArgumentException("weights must be length 2652, current length is " + weights.length);
 		}
 		
@@ -20,5 +20,10 @@ public class Range {
 	
 	public double getWeight(HoleCards hc) {
 		return weights[hc.getIndex()];
-	}	
+	}
+	
+	//returns a randomly selected HoleCards
+	public HoleCards randomHoleCards() {
+		throw new IllegalArgumentException();
+	}
 }
