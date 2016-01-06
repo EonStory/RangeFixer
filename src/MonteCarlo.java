@@ -3,39 +3,24 @@ import java.util.Random;
 public class MonteCarlo {
 	
 	public static void runIt(long simulationCount, Range[] foldedRanges, Range activeRange) {
-		Deck deck = new Deck();
 		
-		long[] counter = new long[2652];
+		long[] counter = new long[1326];
 		long succesfulSimulations = 0;
 		
-		Random rng = new Random();
-		
+		HoleCards[] randomlySelectedHoleCards = new HoleCards[foldedRanges.length + 1];
 		
 		mainloop:
 		for (long i = 0; i < simulationCount; i++) {
-			deck.shuffle();
-			
-			//structure of deck is: [folded cards, active cards, flop, unused cards]
-			
-			//check all folded cards are actually folded		
-			for (int j = 0; j < foldedRanges.length; j++) {
-				HoleCards hc = HoleCards.getHoleCards(deck.cards[j * 2], deck.cards[j * 2 + 1]);
-				double weightOfHand = foldedRanges[j].getWeight(hc);
-				double q = rng.nextDouble();
-				if (q > weightOfHand) {
-					continue mainloop;
-				}
+			randomlySelectedHoleCards[0] = activeRange.randomHoleCards();
+			for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
+				randomlySelectedHoleCards[j] = foldedRanges[j].randomHoleCards();
 			}
 			
-			//check activehand is active
-			HoleCards hc = HoleCards.getHoleCards(deck.cards[foldedRanges.length * 2], deck.cards[foldedRanges.length * 2 + 1]);
-			double weightOfHand = activeRange.getWeight(hc);
-			double q = rng.nextDouble();
-			if (q > weightOfHand) {
+			if (HoleCards.isCollision(randomlySelectedHoleCards)) {
 				continue mainloop;
 			}
-			
-			counter[HoleCards.getIndex(deck.cards[foldedRanges.length * 2], deck.cards[foldedRanges.length * 2 + 1])]++;
+						
+			counter[randomlySelectedHoleCards[0].getIndex()]++;
 			succesfulSimulations++;
 		}
 	}
