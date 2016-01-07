@@ -50,12 +50,23 @@ public class HoleCards {
 		
 		//triangular numbers!
 		int cardsBefore = 0;
+		if(x<=y){
 		for (int i = 0; i < x; i++) {
 			cardsBefore += 51 - i;
 		}
 		cardsBefore += y - x - 1;	
 		
 		return cardsBefore;	
+		}
+		else{
+			for (int i = 0; i < y; i++) {
+				cardsBefore += 51 - i;
+			}
+			cardsBefore += x - y - 1;	
+			
+			return cardsBefore;	
+		}
+			
 	}
 	
 	public static HoleCards getHoleCards(Card c1, Card c2) {
