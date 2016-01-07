@@ -14,7 +14,6 @@ public class FileParser {
 			}
 			return solution;
 		}
-
 	
 	public static Range reader(String fileName) {
 		double[] weights = new double[2652];
@@ -268,14 +267,12 @@ public class FileParser {
 			}
 			if (colon != -1 && coma != -1 && fileName.length() > 0){
 				
-			}
-				
+			}				
 		}	
 		
 		Range r = new Range(weights);
 		return r;
-	}
-	
+	}	
 
 	
 	public static void main(String[] args) {

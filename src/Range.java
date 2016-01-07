@@ -24,6 +24,58 @@ public class Range {
 	
 	//returns a randomly selected HoleCards
 	public HoleCards randomHoleCards() {
-		throw new IllegalArgumentException();
+		//unfinished!
+		throw new UnsupportedOperationException();
+		/*
+		double[] alias = new double[1326];
+		double[] prob = new double[1326];
+		
+		boolean[] removed = new boolean[1326];
+		for (int i = 0; i < removed.length; i++) {
+			removed[i] = false;
+		}
+		
+		double[] multiplied = new double[1326];
+		for (int i = 0; i < multiplied.length; i++){
+			multiplied[i] = weights[i] * 1326;
+		}
+		
+		for (int h = 1; h < weights.length - 1; h++) {
+			//find pl < 1
+			double small = -0.3;
+			int indexOfSmall = -1;
+			for (int i = 1; i < multiplied.length; i++) {		
+				if (removed[i] == true) {
+					continue;
+				}
+				if (multiplied[i] <= 1) {
+					small = multiplied[i];
+					indexOfSmall = i;
+					break;
+				}
+			}
+			double big = -0.3;
+			int indexOfBig = -1;
+			for (int i = 1; i < multiplied.length; i++) {	
+				if (removed[i] == true) {
+					continue;
+				}
+				if (i == indexOfSmall) {
+					continue;
+				}
+				if (multiplied[i] >= 1) {
+					big = multiplied[i];
+					indexOfBig = i;
+					break;
+				}
+			}
+			
+			prob[indexOfSmall] = small;
+			alias[indexOfSmall] = indexOfBig;
+			removed[indexOfSmall] = true;
+			multiplied[indexOfBig] = multiplied[indexOfBig] - (1 - multiplied[indexOfSmall]);
+		}		
+		*/
+		//throw new IllegalArgumentException();
 	}
 }
