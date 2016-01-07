@@ -55,7 +55,7 @@ public class FileParser {
 					Card[] firstCard = getAllCardsOfThisRank(fileName.substring(0, 1));
 					Card[] secondCard = getAllCardsOfThisRank(fileName.substring(1, 2));
 					for (int j = 0; j < 4; j++) {
-						for (int k = j + 1; k < 4; k++) {
+						for (int k = 0; k < 4; k++) {
 							weights[HoleCards.getIndex(firstCard[i], secondCard[i])] = 1;
 						}
 					}
