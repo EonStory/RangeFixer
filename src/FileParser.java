@@ -50,17 +50,7 @@ public class FileParser {
 					weights[HoleCards.getIndex(card1111, card222)] = 1;
 					weights[HoleCards.getIndex(card1111, card2222)] = 1;
 					
-					//alternate code
-					/*
-					Card[] firstCard = getAllCardsOfThisRank(fileName.substring(0, 1));
-					Card[] secondCard = getAllCardsOfThisRank(fileName.substring(1, 2));
-					for (int j = 0; j < 4; j++) {
-						for (int k = 0; k < 4; k++) {
-							weights[HoleCards.getIndex(firstCard[i], secondCard[i])] = 1;
-						}
-					}
-					*/
-					
+									
 					i=fileName.length();
 				}
 				else if(fileName.length() == 3){
@@ -286,16 +276,7 @@ public class FileParser {
 		return r;
 	}
 	
-	public static Card[] getAllCardsOfThisRank(String cardString) {
-		Card[] cardInAllSuits = new Card[4];
-		cardInAllSuits[0] = Card.getCard(cardString, "h");
-		cardInAllSuits[1] = Card.getCard(cardString, "d");
-		cardInAllSuits[2] = Card.getCard(cardString, "c");
-		cardInAllSuits[3] = Card.getCard(cardString, "s");
-		return cardInAllSuits;
-	}
-	
-	
+
 	
 	public static void main(String[] args) {
 		FileParser f = new FileParser();
