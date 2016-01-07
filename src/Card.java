@@ -3,9 +3,9 @@ public class Card {
 	
 	private static Card[] allCards = new Card[52];
 	
-	private int rank;
-	private int suit;
-	private int index;
+	public final int rank;
+	public final int suit;
+	public final int index;
 	
 	private static String[] rankNames = new String[] {"A","2","3","4","5","6","7","8","9","T","J","Q","K"};
 	private static String[] suitNames = new String[] {"s","h","d","c"};
