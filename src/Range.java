@@ -52,18 +52,18 @@ public class Range {
 	public void generateAliasTable() {		
 		double[] multiplied = new double[4];
 		for (int i = 0; i < multiplied.length; i++){
-			multiplied[i] = weights[i] * 4;
+			multiplied[i] = weights[i] * 1326;
 			System.out.println("printing probability MUTLIPLIEE" + multiplied[i]);
 		}
 		
-		alias = new int[4];
+		alias = new int[1326];
 		for (int i = 0; i < alias.length; i++) {
 			alias[i] = -2;
 		}
 		
-		prob = new double[4];
+		prob = new double[1326];
 		
-		boolean[] removed = new boolean[4];
+		boolean[] removed = new boolean[1326];
 		for (int i = 0; i < removed.length; i++) {
 			removed[i] = false;
 		}	
