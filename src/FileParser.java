@@ -1,7 +1,7 @@
 
 public class FileParser {
 	
-	public static double[] reader(String fileName) {
+	public static Range reader(String fileName) {
 		double[] weights = new double[1326];
 		for(int i = 0 ; i<1326 ; i++)
 			weights[i] = 0; 
@@ -120,7 +120,7 @@ public class FileParser {
 					i=fileName.length();
 					
 		}
-		return weights;
+		return new Range(weights);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
 	private static int[] AK(String card1, String card2) {
