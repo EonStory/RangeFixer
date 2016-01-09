@@ -11,10 +11,10 @@ public class MonteCarlo {
 		
 		mainloop:
 		for (long i = 0; i < simulationCount; i++) {
-			randomlySelectedHoleCards[0] = activeRange.randomHoleCards();
-			for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
-				randomlySelectedHoleCards[j] = foldedRanges[j].randomHoleCards();
-			}
+			//randomlySelectedHoleCards[0] = activeRange.randomHoleCards();
+			//for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
+			//	randomlySelectedHoleCards[j] = foldedRanges[j].randomHoleCards();
+			//}
 			
 			//make this work with cards somehow.
 			/*
