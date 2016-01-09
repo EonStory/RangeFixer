@@ -1,123 +1,131 @@
+import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
 
 public class FileParser {
 	
-	public static Range reader(String fileName) {
+	public static Range reader(String fileName) throws IOException {
+		BufferedReader readFile = new BufferedReader(new FileReader(fileName));
+		String range = readFile.readLine();
+		readFile.close();
 		double[] weights = new double[1326];
 		for(int i = 0 ; i<1326 ; i++)
 			weights[i] = 0; 
 /////////////////////////////////////////////////////////////////////////we convert the string to hand:weight format
-		for(int n = 0 ; n<fileName.length() ; ){
-			int coma = fileName.indexOf(",",n);
-			if (coma != -1 && (fileName.substring(n, coma)).indexOf(":") == -1){
-				fileName = fileName.substring(0, coma) + ":1" + fileName.substring(coma);
-				n = (fileName.substring(0, coma)).length()+3;
+		for(int n = 0 ; n<range.length() ; ){
+			int coma = range.indexOf(",",n);
+			if (coma != -1 && (range.substring(n, coma)).indexOf(":") == -1){
+				range = range.substring(0, coma) + ":1" + range.substring(coma);
+				n = (range.substring(0, coma)).length()+3;
 				}
-			else if (coma == -1 && fileName.indexOf(":",n) == -1){
-				fileName = fileName + ":1";
-				n = fileName.length();
+			else if (coma == -1 && range.indexOf(":",n) == -1){
+				range = range + ":1";
+				n = range.length();
 			}
-			else if (coma != -1 && (fileName.substring(n, coma)).indexOf(":") != -1){
-				n = (fileName.substring(0, coma)).length()+1;
+			else if (coma != -1 && (range.substring(n, coma)).indexOf(":") != -1){
+				n = (range.substring(0, coma)).length()+1;
 			}
 			else
-				n = fileName.length();
+				n = range.length();
 		}
 ////////////////////////////////////////////////////////////////////////////////////////////////////////
-		for(int i = 0 ; i<fileName.length() ;){
-			int coma = fileName.indexOf(",",i);
-			int colon = fileName.indexOf(":",i);
-			if(fileName.substring(0, colon).length() == 2){
-				if(fileName.substring(0, 1).equals(fileName.substring(1, 2))){
+		for(int i = 0 ; i<range.length() ;){
+			int coma = range.indexOf(",",i);
+			int colon = range.indexOf(":",i);
+			if(range.substring(0, colon).length() == 2){
+				if(range.substring(0, 1).equals(range.substring(1, 2))){
 					int[] index = new int[6];
-					index = KK(fileName.substring(0, 1), fileName.substring(1, 2));
+					index = KK(range.substring(0, 1), range.substring(1, 2));
 					if(coma!=-1){
 						for(int j=0 ; j<6 ; j++){
-						weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, coma));
+						weights[index[j]] = Double.parseDouble(range.substring(colon+1, coma));
 					}
-					fileName = fileName.substring(coma+1, fileName.length());
+					range = range.substring(coma+1, range.length());
 
 					}
 					else{
 						for(int j=0 ; j<6 ; j++){
-							weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, fileName.length()));
+							weights[index[j]] = Double.parseDouble(range.substring(colon+1, range.length()));
 						}
-						i=fileName.length();
+						i=range.length();
 					}
 				}
 				else {
 					int[] index = new int[16]; 
-					index = AK(fileName.substring(0, 1), fileName.substring(1, 2));
+					index = AK(range.substring(0, 1), range.substring(1, 2));
 					if(coma!=-1){
 						for(int j=0 ; j<16 ; j++){
-						weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, coma));
+						weights[index[j]] = Double.parseDouble(range.substring(colon+1, coma));
 					}
-					fileName = fileName.substring(coma+1, fileName.length());
+					range = range.substring(coma+1, range.length());
 					}
 					else{
 						for(int j=0 ; j<16 ; j++){
-							weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, fileName.length()));
+							weights[index[j]] = Double.parseDouble(range.substring(colon+1, range.length()));
 						}
-						i=fileName.length();
+						i=range.length();
 					}
 				}
 			}
-			else if(fileName.substring(0, colon).length() == 3){
-				if (fileName.substring(2, 3).equals("o")){
+			else if(range.substring(0, colon).length() == 3){
+				if (range.substring(2, 3).equals("o")){
 					int[] index = new int[12]; 
-					index = AKo(fileName.substring(0, 1), fileName.substring(1, 2));
+					index = AKo(range.substring(0, 1), range.substring(1, 2));
 					if(coma!=-1){
 						for(int j=0 ; j<12 ; j++){
-						weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, coma));
+						weights[index[j]] = Double.parseDouble(range.substring(colon+1, coma));
 					}
-					fileName = fileName.substring(coma+1, fileName.length());
+					range = range.substring(coma+1, range.length());
 					}
 					else{
 						for(int j=0 ; j<12 ; j++){
-							weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, fileName.length()));
+							weights[index[j]] = Double.parseDouble(range.substring(colon+1, range.length()));
 						}
-						i=fileName.length();
+						i=range.length();
 					}
 				}
-				else if (fileName.substring(2, 3).equals("s")){
+				else if (range.substring(2, 3).equals("s")){
 					int[] index = new int[4]; 
-					index = AKs(fileName.substring(0, 1), fileName.substring(1, 2));
+					index = AKs(range.substring(0, 1), range.substring(1, 2));
 					if(coma!=-1){
 						for(int j=0 ; j<4 ; j++){
-						weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, coma));
+						weights[index[j]] = Double.parseDouble(range.substring(colon+1, coma));
 					}
-					fileName = fileName.substring(coma+1, fileName.length());
+					range = range.substring(coma+1, range.length());
 					}
 					else{
 						for(int j=0 ; j<4 ; j++){
-							weights[index[j]] = Double.parseDouble(fileName.substring(colon+1, fileName.length()));
+							weights[index[j]] = Double.parseDouble(range.substring(colon+1, range.length()));
 						}
-						i=fileName.length();
+						i=range.length();
 					}
 				}
 				else
 					if(coma!=-1)
-						fileName = fileName.substring(coma+1, fileName.length());
+						range = range.substring(coma+1, range.length());
 					else
-						i=fileName.length();
+						i=range.length();
 			}
-			else if(fileName.substring(0, colon).length() == 4){
-				Card card1 = Card.getCard(fileName.substring(0, 1), fileName.substring(1, 2));
-				Card card2 = Card.getCard(fileName.substring(2, 3), fileName.substring(3, 4));
+			else if(range.substring(0, colon).length() == 4){
+				Card card1 = Card.getCard(range.substring(0, 1), range.substring(1, 2));
+				Card card2 = Card.getCard(range.substring(2, 3), range.substring(3, 4));
 				if(coma!=-1){
-					weights[HoleCards.getIndex(card1, card2)] = Double.parseDouble(fileName.substring(colon+1, coma));
-					fileName = fileName.substring(coma+1, fileName.length());
+					weights[HoleCards.getIndex(card1, card2)] = Double.parseDouble(range.substring(colon+1, coma));
+					range = range.substring(coma+1, range.length());
 				}
 				else{
-					weights[HoleCards.getIndex(card1, card2)] = Double.parseDouble(fileName.substring(colon+1, fileName.length()));
-					i=fileName.length();
+					weights[HoleCards.getIndex(card1, card2)] = Double.parseDouble(range.substring(colon+1, range.length()));
+					i=range.length();
 				}
 
 			}
 			else
 				if(coma!=-1)
-					fileName = fileName.substring(coma+1, fileName.length());
+					range = range.substring(coma+1, range.length());
 				else
-					i=fileName.length();
+					i=range.length();
 					
 		}
 		return new Range(weights);
