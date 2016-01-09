@@ -2,7 +2,7 @@
 public class HoleCards {
 	private static HoleCards[] allHoleCards = new HoleCards[1326];
 	
-	private Card[] cards = new Card[2];
+	public Card[] cards = new Card[2];
 	private int index;
 	
 	private HoleCards(Card c1, Card c2, int index) {
@@ -75,6 +75,10 @@ public class HoleCards {
 		}
 		
 		return allHoleCards[getIndex(c1, c2)];		
+	}
+	
+	public static HoleCards getHoleCards(int index) {	
+		return allHoleCards[index];		
 	}
 	
 	public String toString() {

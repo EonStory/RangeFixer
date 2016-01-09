@@ -27,7 +27,7 @@ public class Range {
 		
 		//normalisation, making all weights sum to 1.
 		for (int i = 0; i < weights.length; i++) {
-			this.weights[i] = weights[i] * (1 / sum);
+			this.weights[i] = weights[i] * (1.0 / sum);
 		}		
 		
 		generateAliasTable();
@@ -37,17 +37,16 @@ public class Range {
 		return weights[hc.getIndex()];
 	}
 	
-	public int getRandomHoleCardsIndex() {
+	public HoleCards getRandomHoleCards() {
 		int randomIndex = rng.nextInt(alias.length);
 		double randomDouble = rng.nextDouble();
 		
 		if (randomDouble < prob[randomIndex]) {
-			return randomIndex;
+			return HoleCards.getHoleCards(randomIndex);
 		}
 		else {
-			return alias[randomIndex];
-		}
-		
+			return HoleCards.getHoleCards(alias[randomIndex]);
+		}		
 	}
 	
 	public void generateAliasTable() {		

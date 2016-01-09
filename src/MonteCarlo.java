@@ -9,16 +9,22 @@ public class MonteCarlo {
 		
 		HoleCards[] randomlySelectedHoleCards = new HoleCards[foldedRanges.length + 1];
 		
-		mainloop:
+		Card[] cardsDealt = new Card[foldedRanges.length * 2 + 2];
+		
 		for (long i = 0; i < simulationCount; i++) {
-			//randomlySelectedHoleCards[0] = activeRange.randomHoleCards();
-			//for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
-			//	randomlySelectedHoleCards[j] = foldedRanges[j].randomHoleCards();
-			//}
+			randomlySelectedHoleCards[0] = activeRange.getRandomHoleCards();
+			for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
+				randomlySelectedHoleCards[j] = foldedRanges[j].getRandomHoleCards();
+			}
+			
+			for (int j = 0; j < randomlySelectedHoleCards.length; j++) {
+				cardsDealt[j * 2] = randomlySelectedHoleCards[j * 2].cards[0];
+				cardsDealt[j * 2 + 1] = randomlySelectedHoleCards[j * 2 + 1].cards[1];
+			}
 			
 			//make this work with cards somehow.
 			/*
-			if (HoleCards.isCollision(randomlySelectedHoleCards)) {
+			if (isCollision(randomlySelectedHoleCards)) {
 				continue mainloop;
 			}
 			*/
@@ -26,5 +32,17 @@ public class MonteCarlo {
 			counter[randomlySelectedHoleCards[0].getIndex()]++;
 			succesfulSimulations++;
 		}
+	}
+	
+	//can be optimised more by not comparing cards from within a holecards (they're gauranteed to be different)
+	public static boolean isCollision(Card[] cards) {
+		for (int i = 0; i < cards.length - 1; i++) {
+			for (int j = i + 1; j < cards.length; j++) {
+				if (cards[i].index == cards[j].index) {
+					return false;
+				}
+			}
+		}
+		return true;
 	}
 }
