@@ -53,6 +53,7 @@ public class Card {
 		}
 		return false;
 	}
+	
 	public static Card getCard(String rank, String suit) {
 		int r = -1;
 		int s = -1;
