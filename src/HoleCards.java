@@ -33,19 +33,17 @@ public class HoleCards {
 		if (c1.getIndex() == c2.getIndex()) {
 			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
 		}
-		
-		int[] orderedCardIndexes = new int[2];
-		
+				
 		//bigger card always goes second!		
-		orderedCardIndexes[0] = Math.min(c1.index, c2.index);
-		orderedCardIndexes[1] = Math.max(c1.index, c2.index);
+		int smallCard = Math.min(c1.index, c2.index);
+		int bigCard = Math.max(c1.index, c2.index);
 		
 		//triangular numbers!
 		int cardsBefore = 0;		
-		for (int i = 0; i < orderedCardIndexes[0]; i++) {
+		for (int i = 0; i < smallCard; i++) {
 			cardsBefore += 51 - i;
 		}
-		cardsBefore += orderedCardIndexes[1] - orderedCardIndexes[0] - 1;	
+		cardsBefore += bigCard - smallCard - 1;	
 		
 		return cardsBefore;			
 	}
