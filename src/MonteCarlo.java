@@ -2,24 +2,24 @@ import java.util.Random;
 
 public class MonteCarlo {
 	
-	public static void runIt(long simulationCount, Range[] foldedRanges, Range activeRange) {
+	public static Range runIt(long simulationCount, Range[] foldedRanges, Range activeRange) {
 		
 		long[] counter = new long[1326];
 		long succesfulSimulations = 0;
 		
 		HoleCards[] randomlySelectedHoleCards = new HoleCards[foldedRanges.length + 1];
 		
-		Card[] cardsDealt = new Card[foldedRanges.length * 2 + 2];
+		Card[] cardsDealt = new Card[randomlySelectedHoleCards.length * 2];
 		
 		for (long i = 0; i < simulationCount; i++) {
 			randomlySelectedHoleCards[0] = activeRange.getRandomHoleCards();
 			for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
-				randomlySelectedHoleCards[j] = foldedRanges[j].getRandomHoleCards();
+				randomlySelectedHoleCards[j] = foldedRanges[j - 1].getRandomHoleCards();
 			}
 			
 			for (int j = 0; j < randomlySelectedHoleCards.length; j++) {
-				cardsDealt[j * 2] = randomlySelectedHoleCards[j * 2].cards[0];
-				cardsDealt[j * 2 + 1] = randomlySelectedHoleCards[j * 2 + 1].cards[1];
+				cardsDealt[j * 2] =     randomlySelectedHoleCards[j].cards[0];
+				cardsDealt[j * 2 + 1] = randomlySelectedHoleCards[j].cards[1];
 			}	
 			
 			if (isCollision(cardsDealt) == false) {
@@ -42,13 +42,7 @@ public class MonteCarlo {
 			fixedRange[i] = fixedRange[i] * (1.0 / max);
 		}		
 		
-		//now print the results!		
-		for (int i = 0; i < 1326; i++) {
-			if (fixedRange[i] == 0) {
-				continue;
-			}
-			System.out.println(HoleCards.getHoleCards(i) + ":" + fixedRange[i] + ",");
-		}		
+		return new Range(fixedRange);		
 	}
 	
 	//can be optimised more by not comparing cards from within a holecards (they're guaranteed to be different)
