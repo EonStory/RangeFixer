@@ -3,10 +3,10 @@ public class HoleCards {
 	private static HoleCards[] allHoleCards = new HoleCards[1326];
 	
 	public Card[] cards = new Card[2];
-	private int index;
+	public final int index;
 	
 	private HoleCards(Card c1, Card c2, int index) {		
-		if (c2.getIndex() <= c1.getIndex()) {
+		if (c2.index <= c1.index) {
 			throw new IllegalArgumentException("second card cant be bigger or equal to first card");
 		}
 		
@@ -24,14 +24,10 @@ public class HoleCards {
 			}
 		}
 	}
-	
-	public int getIndex() {
-		return index;
-	}
-	
+		
 	public static int getIndex(Card c1, Card c2) {
-		if (c1.getIndex() == c2.getIndex()) {
-			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
+		if (c1.index == c2.index) {
+			throw new IllegalArgumentException("cant be the same card! card with index " + c1.index + " is used twice");
 		}
 				
 		//bigger card always goes second!		
@@ -49,8 +45,8 @@ public class HoleCards {
 	}
 	
 	public static HoleCards getHoleCards(Card c1, Card c2) {
-		if (c1.getIndex() == c2.getIndex()) {
-			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
+		if (c1.index == c2.index) {
+			throw new IllegalArgumentException("cant be the same card! card with index " + c1.index + " is used twice");
 		}
 		
 		return allHoleCards[getIndex(c1, c2)];		

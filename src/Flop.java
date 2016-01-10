@@ -24,10 +24,10 @@ public class Flop {
 	
 	private Flop(Card c1, Card c2, Card c3) {
 		this.cards = new Card[]{c1, c2, c3};
-		index = c1.getIndex() * 51 * 50 + c2.getIndex() * 50 + c3.getIndex(); 
+		index = c1.index * 51 * 50 + c2.index * 50 + c3.index; 
 	}
 	
 	public Flop getFlop(Card c1, Card c2, Card c3) {
-		return allFlops[c1.getIndex() * 51 * 50 + c2.getIndex() * 50 + c3.getIndex()];
+		return allFlops[c1.index * 51 * 50 + c2.index * 50 + c3.index];
 	}
 }

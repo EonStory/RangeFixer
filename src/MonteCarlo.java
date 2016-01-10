@@ -25,7 +25,7 @@ public class MonteCarlo {
 			}	
 			
 			if (isCollision(cardsDealt) == false) {
-				counter[randomlySelectedHoleCards[0].getIndex()]++;
+				counter[randomlySelectedHoleCards[0].index]++;
 				succesfulSimulations++;
 			}			
 		}

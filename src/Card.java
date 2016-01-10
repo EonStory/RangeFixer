@@ -12,8 +12,7 @@ public class Card {
 	
 	public String toString() {
 		return rankNames[rank] + suitNames[suit];
-	}
-	
+	}	
 	
 	//new cards cannot be constructed outside of this class
 	private Card(int rank, int suit) {
@@ -31,10 +30,6 @@ public class Card {
 				counter++;
 			}
 		}
-	}
-	
-	public int getIndex() {
-		return index;
 	}
 	
 	public static int getIndex(Card c) {

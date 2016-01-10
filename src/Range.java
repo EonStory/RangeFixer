@@ -37,7 +37,7 @@ public class Range {
 	}
 	
 	public double getWeight(HoleCards hc) {
-		return weights[hc.getIndex()];
+		return weights[hc.index];
 	}
 	
 	public HoleCards getRandomHoleCards() {
