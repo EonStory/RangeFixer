@@ -129,10 +129,6 @@ public class FileParser {
 					
 		}
 		
-		for (int i = 0; i < weights.length; i++) {
-			System.out.println(i +": " + weights[i] + ", ");
-		}
-		
 		return new Range(weights);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

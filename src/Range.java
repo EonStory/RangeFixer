@@ -56,7 +56,6 @@ public class Range {
 		double[] multiplied = new double[1326];
 		for (int i = 0; i < multiplied.length; i++){
 			multiplied[i] = weights[i] * 1326;
-			System.out.println("printing probability MUTLIPLIED " + multiplied[i]);
 		}
 		
 		alias = new int[1326];
@@ -71,27 +70,7 @@ public class Range {
 			removed[i] = false;
 		}	
 		
-		for (int h = 0; h < prob.length - 1; h++) {		
-			/*
-			System.out.println("h = " + h);
-			System.out.println("printing probability ");
-			for (int i = 0; i < prob.length; i++) {
-				System.out.println("p " + i + ": " + prob[i]);
-			}
-			System.out.println("printing alias ");
-			for (int i = 0; i < alias.length; i++) {
-				System.out.println("a " + i + ": " + alias[i]);
-			}
-			System.out.println("printing multiplied ");
-			for (int i = 0; i < multiplied.length; i++) {
-				System.out.println("m " + i + ": " + multiplied[i]);
-			}
-			System.out.println("printing removed ");
-			for (int i = 0; i < removed.length; i++) {
-				System.out.println("r " + i + ": " + removed[i]);
-			}
-			*/
-			
+		for (int h = 0; h < prob.length - 1; h++) {
 			//find pl < 1
 			double small = -0.3;
 			int indexOfSmall = -1;
@@ -138,6 +117,9 @@ public class Range {
 	public String toString() {		
 		String s = "";
 		for (int i = 0; i < weights.length; i++) {
+			if (weights[i] == 0) {
+				continue;
+			}
 			s += HoleCards.getHoleCards(i) + ":" + weights[i] * sum + ",\n";
 		}
 		return s;
