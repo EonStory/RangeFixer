@@ -36,15 +36,9 @@ public class HoleCards {
 		
 		int[] orderedCardIndexes = new int[2];
 		
-		//bigger card always goes second!
-		if (c1.getIndex() < c2.getIndex()) {
-			orderedCardIndexes[0] = c1.getIndex();
-			orderedCardIndexes[1] = c2.getIndex();
-		}
-		else {
-			orderedCardIndexes[0] = c2.getIndex();
-			orderedCardIndexes[1] = c1.getIndex();
-		}
+		//bigger card always goes second!		
+		orderedCardIndexes[0] = Math.min(c1.index, c2.index);
+		orderedCardIndexes[1] = Math.max(c1.index, c2.index);
 		
 		//triangular numbers!
 		int cardsBefore = 0;		
