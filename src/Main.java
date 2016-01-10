@@ -9,7 +9,7 @@ public class Main {
 		foldedRanges[0] = foldedRange1;
 		
 		
-		Range fixedActiveRange = MonteCarlo.runIt(100000000l, foldedRanges, activeRange);
+		Range fixedActiveRange = MonteCarlo.runIt(10000000l, foldedRanges, activeRange);
 		
 		System.out.println(fixedActiveRange);
 	}

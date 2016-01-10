@@ -1,4 +1,3 @@
-import java.util.Random;
 
 public class MonteCarlo {
 	
@@ -12,11 +11,13 @@ public class MonteCarlo {
 		Card[] cardsDealt = new Card[randomlySelectedHoleCards.length * 2];
 		
 		for (long i = 0; i < simulationCount; i++) {
+			
 			randomlySelectedHoleCards[0] = activeRange.getRandomHoleCards();
+						
 			for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
 				randomlySelectedHoleCards[j] = foldedRanges[j - 1].getRandomHoleCards();
 			}
-			
+						
 			for (int j = 0; j < randomlySelectedHoleCards.length; j++) {
 				cardsDealt[j * 2] =     randomlySelectedHoleCards[j].cards[0];
 				cardsDealt[j * 2 + 1] = randomlySelectedHoleCards[j].cards[1];
@@ -25,9 +26,9 @@ public class MonteCarlo {
 			if (isCollision(cardsDealt) == false) {
 				counter[randomlySelectedHoleCards[0].getIndex()]++;
 				succesfulSimulations++;
-			}			
+			}
 		}
-		
+				
 		//convert from long back to double
 		double[] fixedRange = new double[1326];
 		double max = 0;
@@ -50,10 +51,10 @@ public class MonteCarlo {
 		for (int i = 0; i < cards.length - 1; i++) {
 			for (int j = i + 1; j < cards.length; j++) {
 				if (cards[i].index == cards[j].index) {
-					return false;
+					return true;
 				}
 			}
 		}
-		return true;
+		return false;
 	}
 }
