@@ -5,8 +5,7 @@ public class HoleCards {
 	public Card[] cards = new Card[2];
 	private int index;
 	
-	private HoleCards(Card c1, Card c2, int index) {
-		
+	private HoleCards(Card c1, Card c2, int index) {		
 		if (c2.getIndex() <= c1.getIndex()) {
 			throw new IllegalArgumentException("second card cant be bigger or equal to first card");
 		}
@@ -35,38 +34,26 @@ public class HoleCards {
 			throw new IllegalArgumentException("cant be the same card! card with index " + c1.getIndex() + " is used twice");
 		}
 		
-		int x;
-		int y;
+		int[] orderedCardIndexes = new int[2];
 		
 		//bigger card always goes second!
 		if (c1.getIndex() < c2.getIndex()) {
-			x = c1.getIndex();
-			y = c2.getIndex();
+			orderedCardIndexes[0] = c1.getIndex();
+			orderedCardIndexes[1] = c2.getIndex();
 		}
 		else {
-			x = c2.getIndex();
-			y = c1.getIndex();
+			orderedCardIndexes[0] = c2.getIndex();
+			orderedCardIndexes[1] = c1.getIndex();
 		}
 		
 		//triangular numbers!
-		int cardsBefore = 0;
-		if(x<=y){
-		for (int i = 0; i < x; i++) {
+		int cardsBefore = 0;		
+		for (int i = 0; i < orderedCardIndexes[0]; i++) {
 			cardsBefore += 51 - i;
 		}
-		cardsBefore += y - x - 1;	
+		cardsBefore += orderedCardIndexes[1] - orderedCardIndexes[0] - 1;	
 		
-		return cardsBefore;	
-		}
-		else{
-			for (int i = 0; i < y; i++) {
-				cardsBefore += 51 - i;
-			}
-			cardsBefore += x - y - 1;	
-			
-			return cardsBefore;	
-		}
-			
+		return cardsBefore;			
 	}
 	
 	public static HoleCards getHoleCards(Card c1, Card c2) {
