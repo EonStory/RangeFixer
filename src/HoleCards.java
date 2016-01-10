@@ -5,11 +5,7 @@ public class HoleCards {
 	public Card[] cards = new Card[2];
 	public final int index;
 	
-	private HoleCards(Card c1, Card c2, int index) {		
-		if (c2.index <= c1.index) {
-			throw new IllegalArgumentException("second card cant be bigger or equal to first card");
-		}
-		
+	private HoleCards(Card c1, Card c2, int index) {
 		cards[0] = c1;
 		cards[1] = c2;
 		this.index = index;

@@ -36,8 +36,8 @@ public class Card {
 		return c.index;
 	}
 	
-	public static Card getCard(int x) {
-		return allCards[x];
+	public static Card getCard(int index) {
+		return allCards[index];
 	}
 	
 	public static boolean sameSuit(Card c1, Card c2) {
