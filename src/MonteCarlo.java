@@ -48,11 +48,10 @@ public class MonteCarlo {
 				continue;
 			}
 			System.out.println(HoleCards.getHoleCards(i) + ":" + fixedRange[i] + ",");
-		}
-		
+		}		
 	}
 	
-	//can be optimised more by not comparing cards from within a holecards (they're gauranteed to be different)
+	//can be optimised more by not comparing cards from within a holecards (they're guaranteed to be different)
 	public static boolean isCollision(Card[] cards) {
 		for (int i = 0; i < cards.length - 1; i++) {
 			for (int j = i + 1; j < cards.length; j++) {

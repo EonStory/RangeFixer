@@ -128,6 +128,11 @@ public class FileParser {
 					i=range.length();
 					
 		}
+		
+		for (int i = 0; i < weights.length; i++) {
+			System.out.println(i +": " + weights[i] + ", ");
+		}
+		
 		return new Range(weights);
 }
 ////////////////////////////////////////////////////////////////////////////////////////////////////////

@@ -5,6 +5,7 @@ public class Range {
 	private double[] weights;
 	private double[] prob;
 	private int[] alias;
+	private double sum;
 	
 	Random rng = new Random();	
 		
@@ -19,12 +20,14 @@ public class Range {
 				throw new IllegalArgumentException("weights x must satisfy 0 <= x <= 1, x for value " + i + " is " + weights[i]);
 			}
 			sum += weights[i];			
-		}		
+		}
 		
 		if (sum == 0) {
 			throw new IllegalArgumentException("weights must contain at least one non zero weight!");
 		}
+		this.sum = sum;
 		
+		this.weights = new double[1326];
 		//normalisation, making all weights sum to 1.
 		for (int i = 0; i < weights.length; i++) {
 			this.weights[i] = weights[i] * (1.0 / sum);
@@ -50,10 +53,10 @@ public class Range {
 	}
 	
 	public void generateAliasTable() {		
-		double[] multiplied = new double[4];
+		double[] multiplied = new double[1326];
 		for (int i = 0; i < multiplied.length; i++){
 			multiplied[i] = weights[i] * 1326;
-			System.out.println("printing probability MUTLIPLIEE" + multiplied[i]);
+			System.out.println("printing probability MUTLIPLIED " + multiplied[i]);
 		}
 		
 		alias = new int[1326];
@@ -68,7 +71,27 @@ public class Range {
 			removed[i] = false;
 		}	
 		
-		for (int h = 0; h < prob.length - 1; h++) {					
+		for (int h = 0; h < prob.length - 1; h++) {		
+			/*
+			System.out.println("h = " + h);
+			System.out.println("printing probability ");
+			for (int i = 0; i < prob.length; i++) {
+				System.out.println("p " + i + ": " + prob[i]);
+			}
+			System.out.println("printing alias ");
+			for (int i = 0; i < alias.length; i++) {
+				System.out.println("a " + i + ": " + alias[i]);
+			}
+			System.out.println("printing multiplied ");
+			for (int i = 0; i < multiplied.length; i++) {
+				System.out.println("m " + i + ": " + multiplied[i]);
+			}
+			System.out.println("printing removed ");
+			for (int i = 0; i < removed.length; i++) {
+				System.out.println("r " + i + ": " + removed[i]);
+			}
+			*/
+			
 			//find pl < 1
 			double small = -0.3;
 			int indexOfSmall = -1;
@@ -96,7 +119,7 @@ public class Range {
 					indexOfBig = i;
 					break;
 				}
-			}
+			}			
 			
 			prob[indexOfSmall] = small;
 			alias[indexOfSmall] = indexOfBig;
@@ -110,5 +133,13 @@ public class Range {
 				alias[i] = -66;//alias number is irrelevant because probability of it being used is 0
 			}
 		}
+	}
+	
+	public String toString() {		
+		String s = "";
+		for (int i = 0; i < weights.length; i++) {
+			s += HoleCards.getHoleCards(i) + ":" + weights[i] * sum + ",\n";
+		}
+		return s;
 	}
 }
