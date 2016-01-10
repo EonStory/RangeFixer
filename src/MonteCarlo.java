@@ -9,13 +9,14 @@ public class MonteCarlo {
 		HoleCards[] randomlySelectedHoleCards = new HoleCards[foldedRanges.length + 1];
 		
 		Card[] cardsDealt = new Card[randomlySelectedHoleCards.length * 2];
-		
+			
 		for (long i = 0; i < simulationCount; i++) {
 			
 			randomlySelectedHoleCards[0] = activeRange.getRandomHoleCards();
 						
 			for (int j = 1; j < randomlySelectedHoleCards.length; j++) {
 				randomlySelectedHoleCards[j] = foldedRanges[j - 1].getRandomHoleCards();
+				//System.out.println(i + "??? " + j + ", " + randomlySelectedHoleCards[j]);
 			}
 						
 			for (int j = 0; j < randomlySelectedHoleCards.length; j++) {
@@ -26,7 +27,7 @@ public class MonteCarlo {
 			if (isCollision(cardsDealt) == false) {
 				counter[randomlySelectedHoleCards[0].getIndex()]++;
 				succesfulSimulations++;
-			}
+			}			
 		}
 				
 		//convert from long back to double
