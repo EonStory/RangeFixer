@@ -5,19 +5,20 @@ public class Main {
 		Range activeRange = FileParser.reader("range1.txt");
 		Range foldedRange1 = FileParser.reader("range2.txt");
 		Range foldedRange2 = FileParser.reader("range3.txt");
+		Range foldedRange3 = FileParser.reader("range4.txt");
+		Range foldedRange4 = FileParser.reader("range5.txt");
 		
-		System.out.println("*** printing first *** ");
-		System.out.println(foldedRange1);
-		System.out.println("*** printing second *** ");
-		System.out.println(foldedRange2);
+	
 		
 		
-		Range[] foldedRanges = new Range[2];
+		Range[] foldedRanges = new Range[4];
 		foldedRanges[0] = foldedRange1;
 		foldedRanges[1] = foldedRange2;
+		foldedRanges[2] = foldedRange3;
+		foldedRanges[3] = foldedRange4;
 		
 		
-		Range fixedActiveRange = MonteCarlo.runIt(100000000l, foldedRanges, activeRange);
+		Range fixedActiveRange = MonteCarlo.runIt(10000000l, foldedRanges, activeRange);
 		
 		System.out.println(fixedActiveRange);
 	}
