@@ -20,18 +20,36 @@ public class MonteCarlo {
 			for (int j = 0; j < randomlySelectedHoleCards.length; j++) {
 				cardsDealt[j * 2] = randomlySelectedHoleCards[j * 2].cards[0];
 				cardsDealt[j * 2 + 1] = randomlySelectedHoleCards[j * 2 + 1].cards[1];
-			}
+			}	
 			
-			//make this work with cards somehow.
-			/*
-			if (isCollision(randomlySelectedHoleCards)) {
-				continue mainloop;
-			}
-			*/
-			
-			counter[randomlySelectedHoleCards[0].getIndex()]++;
-			succesfulSimulations++;
+			if (isCollision(cardsDealt) == false) {
+				counter[randomlySelectedHoleCards[0].getIndex()]++;
+				succesfulSimulations++;
+			}			
 		}
+		
+		//convert from long back to double
+		double[] fixedRange = new double[1326];
+		double max = 0;
+		for (int i = 0; i < 1326; i++) {
+			fixedRange[i] = counter[i] / ((double) succesfulSimulations);
+			if (fixedRange[i] > max) {
+				max = fixedRange[i];
+			}
+		}
+		//normalise it, so the most common hand has weight 1
+		for (int i = 0; i < 1326; i++) {
+			fixedRange[i] = fixedRange[i] * (1.0 / max);
+		}		
+		
+		//now print the results!		
+		for (int i = 0; i < 1326; i++) {
+			if (fixedRange[i] == 0) {
+				continue;
+			}
+			System.out.println(HoleCards.getHoleCards(i) + ":" + fixedRange[i] + ",");
+		}
+		
 	}
 	
 	//can be optimised more by not comparing cards from within a holecards (they're gauranteed to be different)
