@@ -35,7 +35,7 @@ public class HoleCards {
 		for (int i = 0; i < smallCard; i++) {
 			cardsBefore += 51 - i;
 		}
-		cardsBefore += bigCard - smallCard - 1;	
+		cardsBefore += bigCard - smallCard - 1;
 		
 		return cardsBefore;			
 	}

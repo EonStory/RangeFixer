@@ -54,24 +54,17 @@ public class Card {
 		return false;
 	}
 	
-	public static Card getCard(String rank, String suit) {
-		int r = -1;
-		int s = -1;
-		
+	public static Card getCard(String rank, String suit) {		
 		for (int i = 0; i < 13; i++) {
 			if (rank.equals(rankNames[i])) {
-				r = i;
-				break;
+				for (int j = 0; j < 4; j++) {
+					if (suit.equals(suitNames[j])) {
+						return Card.getCard(j * 13 + i);
+					}
+				}
 			}
 		}
 		
-		for (int j = 0; j < 4; j++) {
-			if (suit.equals(suitNames[j])) {
-				s = j;
-				break;
-			}
-		}
-			
-		return Card.getCard(s * 13 + r);
-	}	
+		throw new IllegalArgumentException("not in existence");
+	}		
 }
