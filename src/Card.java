@@ -66,5 +66,33 @@ public class Card {
 		}
 		
 		throw new IllegalArgumentException("not in existence");
-	}		
+	}	
+	
+	public static Card getCard(int rank, int suit) {		
+		return Card.getCard(suit * 13 + rank);
+	}
+	
+	//maps cards to the isomorphic group
+	public static Card[] cardsSimplified(Card[] cards) {
+			
+		boolean[] done = new boolean[cards.length];
+		for (int i = 0; i < done.length; i++) {
+			done[i] = false;
+		}
+		
+		Card[] results = new Card[cards.length];			
+		
+		for (int i = 0, suitsDone = 0; i < cards.length; i++) {
+			if (done[i] == true) {
+				continue;
+			}
+			for (int j = i; j < cards.length; j++) {
+				if (cards[i].suit == cards[j].suit) {
+					results[j] = Card.getCard(cards[j].rank, suitsDone);
+					done[j] = true;
+				}						
+			}
+		}			
+		return results;
+	}
 }

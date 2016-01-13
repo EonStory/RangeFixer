@@ -14,7 +14,7 @@ public class Main {
 		foldedRanges[2] = foldedRange3;
 		foldedRanges[3] = foldedRange4;		
 		
-		Range fixedActiveRange = MonteCarlo.runIt(100000000l, foldedRanges, activeRange);
+		Range fixedActiveRange = MonteCarlo.runIt(10000000000l, foldedRanges, activeRange);
 		
 		System.out.println(fixedActiveRange);
 	}

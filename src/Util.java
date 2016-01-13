@@ -13,5 +13,5 @@ public final class Util {
 	//returns all permutations possible of a given card set. eg [Ah 2c] returns [[Ah 2c], [2c Ah]].
 	public static Card[][] allOrders(Card[] cards) {
 		return null;
-	}
+	}	
 }
