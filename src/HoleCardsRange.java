@@ -1,6 +1,6 @@
 import java.util.Random;
 
-public class Range {
+public class HoleCardsRange {
 	
 	private double[] weights;
 	private double[] prob;
@@ -9,7 +9,7 @@ public class Range {
 	
 	Random rng = new Random();	
 		
-	public Range(double[] weights) {	
+	public HoleCardsRange(double[] weights) {	
 		if (weights.length != 1326) {
 			throw new IllegalArgumentException("weights must be length 1326, current length is " + weights.length);
 		}

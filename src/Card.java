@@ -92,6 +92,7 @@ public class Card {
 					done[j] = true;
 				}						
 			}
+			suitsDone++;
 		}			
 		return results;
 	}

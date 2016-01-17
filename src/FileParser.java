@@ -6,7 +6,7 @@ import java.io.IOException;
 
 public class FileParser {
 
-	public static Range reader(String fileName) throws IOException {
+	public static HoleCardsRange reader(String fileName) throws IOException {
 		BufferedReader readFile = new BufferedReader(new FileReader(fileName));
 		String range = readFile.readLine();
 		readFile.close();
@@ -120,7 +120,7 @@ public class FileParser {
 
 		}
 
-		return new Range(weights);
+		return new HoleCardsRange(weights);
 	}
 
 	////////////////////////////////////////////////////////////////////////////////////////////////////////

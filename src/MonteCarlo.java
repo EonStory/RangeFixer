@@ -1,7 +1,7 @@
 
 public class MonteCarlo {
 	
-	public static Range runIt(long simulationCount, Range[] foldedRanges, Range activeRange) {
+	public static HoleCardsRange runIt(long simulationCount, HoleCardsRange[] foldedRanges, HoleCardsRange activeRange) {
 		
 		long[] counter = new long[1326];
 		long succesfulSimulations = 0;
@@ -44,7 +44,7 @@ public class MonteCarlo {
 			fixedRange[i] = fixedRange[i] * (1.0 / max);
 		}		
 		
-		return new Range(fixedRange);		
+		return new HoleCardsRange(fixedRange);		
 	}
 	
 	//can be optimised more by not comparing cards from within a holecards (they're guaranteed to be different)
