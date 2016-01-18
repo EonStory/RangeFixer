@@ -1,10 +1,11 @@
+import java.util.Arrays;
 
 public final class Util {
 	
 	//private constructor
 	private Util() {		
 	}
-	
+
 	public void generateAliasTable(double[] rawWeightInput) {
 		//normalise it
 		double[] normalisedInput = new double[rawWeightInput.length];

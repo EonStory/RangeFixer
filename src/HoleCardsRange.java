@@ -118,10 +118,54 @@ public class HoleCardsRange {
 		String s = "";
 		for (int i = 0; i < weights.length; i++) {
 			if (weights[i] == 0) {
-				continue;
+				//continue;
 			}
 			s += HoleCards.getHoleCards(i) + ":" + weights[i] * sum + ",\n";
 		}
 		return s;
 	}
+	
+	
+	//averages all suits of each hole cards.
+	public void deSuit() {
+		double[] weights2 = new double[weights.length];
+		for (int i = 0; i < weights.length; i++) {
+			int[] indexesOfAllSuits = HoleCards.equivs[i];
+			
+			double sum = 0;
+			for (int j = 0; j < indexesOfAllSuits.length; j++) {
+				sum += weights[indexesOfAllSuits[j]];
+			}
+			
+			
+			
+			weights2[i] = sum / indexesOfAllSuits.length;			
+		}
+		weights = weights2;
+		
+		
+		for (int i = 0; i < weights.length; i++) {
+			//System.out.println("weights " + i + " is " + weights[i]);
+		}
+		
+		//normalise it now...
+		double totalWeight = 0;
+		double maxWeight = 0;
+		for (int i = 0; i < weights.length; i++) {
+			totalWeight += weights[i];
+			if (weights[i] > maxWeight) {
+				maxWeight = weights[i];
+			}
+		}
+		
+		//important! sum must be updated
+		sum = totalWeight;
+		double multiplier = 1.0 / maxWeight;
+		
+		for (int i = 0; i < weights.length; i++) {
+			weights[i] *= multiplier;
+		}	
+		
+	}
+	
 }

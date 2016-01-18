@@ -1,5 +1,6 @@
+import java.util.Arrays;
 
-public class Card {
+public class Card implements Comparable<Card>{
 	
 	private static Card[] allCards = new Card[52];
 	
@@ -73,8 +74,11 @@ public class Card {
 	}
 	
 	//maps cards to the isomorphic group
-	public static Card[] cardsSimplified(Card[] cards) {
-			
+	public static Card[] cardsSimplified(Card[] c) {
+		//need to sort it baby!
+		Card[] cards = c.clone();
+		Arrays.sort(cards);
+		
 		boolean[] done = new boolean[cards.length];
 		for (int i = 0; i < done.length; i++) {
 			done[i] = false;
@@ -93,7 +97,15 @@ public class Card {
 				}						
 			}
 			suitsDone++;
-		}			
+		}
+		
+		Arrays.sort(results);
+		
 		return results;
 	}
+
+	@Override
+	public int compareTo(Card arg0) {		
+		return this.rank - arg0.rank;
+	}	
 }

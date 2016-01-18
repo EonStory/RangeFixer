@@ -15,8 +15,10 @@ public class Main {
 		foldedRanges[3] = foldedRange4;		
 		
 
-		HoleCardsRange fixedActiveRange = MonteCarlo.runIt(10000000000l, foldedRanges, activeRange);
-		
+		HoleCardsRange fixedActiveRange = MonteCarlo.runIt(10000000l, foldedRanges, activeRange);
+		fixedActiveRange.deSuit();
 		System.out.println(fixedActiveRange);
+		
+		
 	}
 }
