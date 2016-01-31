@@ -169,8 +169,7 @@ public class HoleCardsRange {
 	
 	public static HoleCardsRange parse(String formattedHands) {
 		
-		double[] weights = new double[HoleCards.numberOfHoleCards];
-		
+		double[] weights = new double[HoleCards.numberOfHoleCards];		
 		String[] splitHands = formattedHands.split("[,]");
 		
 		for (int i = 0; i < splitHands.length; i++) {
