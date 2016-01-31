@@ -4,15 +4,16 @@ import java.io.IOException;
 
 public class FileParser {
 
-	public static HoleCardsRange reader(String fileName) throws IOException {
+	public static HoleCardsRange reader(String fileName) throws IOException {	
+		
 		BufferedReader readFile = new BufferedReader(new FileReader(fileName));
 		String range = readFile.readLine();
 		readFile.close();
-		double[] weights = new double[1326];
-		for (int i = 0; i < 1326; i++)
+		
+		double[] weights = new double[HoleCards.numberOfHoleCards];
+		for (int i = 0; i < HoleCards.numberOfHoleCards; i++)
 			weights[i] = 0;
-		// we convert the string	to hand:weight
-		//// format
+		//we convert the string	to hand:weight format
 		for (int n = 0; n < range.length();) {
 			int coma = range.indexOf(",", n);
 			if (coma != -1 && (range.substring(n, coma)).indexOf(":") == -1) {
@@ -26,7 +27,7 @@ public class FileParser {
 			} else
 				n = range.length();
 		}
-		////////////////////////////////////////////////////////////////////////////////////////////////////////
+		
 		for (int i = 0; i < range.length();) {
 			int coma = range.indexOf(",", i);
 			int colon = range.indexOf(":", i);
@@ -110,7 +111,6 @@ public class FileParser {
 				range = range.substring(coma + 1, range.length());
 			else
 				i = range.length();
-
 		}
 
 		return new HoleCardsRange(weights);

@@ -2,10 +2,12 @@
 public class Flop {
 	
 	//52 choose 3 = 22100
-	private static Flop[] allFlops = new Flop[22100];
+	public static Flop[] allFlops = new Flop[22100];
 	
 	public Card[] cards;
-	public int index;
+	public final int index;
+	public static final int numberOfFlops = 22100;
+	
 	
 	static {
 		int counter = 0;
@@ -25,11 +27,19 @@ public class Flop {
 	}
 	
 	public static Flop getFlop(Card c1, Card c2, Card c3) {
-		return allFlops[c1.index * 51 * 50 + c2.index * 50 + c3.index];
+		return allFlops[Util.combinadic(new int[] {c1.index, c2.index, c3.index})];
 	}
+	
+	public static int indexOf(Card c1, Card c2, Card c3) {
+		return Util.combinadic(new int[] {c1.index, c2.index, c3.index});
+	}	
 	
 	public static Flop getFlop(int index) {
 		return allFlops[index];
+	}
+	
+	public String toString() {
+		return cards[0].toString() + cards[1].toString() + cards[2].toString();
 	}
 	
 }

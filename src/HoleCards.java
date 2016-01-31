@@ -3,6 +3,8 @@ import java.util.Arrays;
 public class HoleCards {
 	private static HoleCards[] allHoleCards = new HoleCards[1326];
 	
+	public static final int numberOfHoleCards = 1326;
+	
 	public Card[] cards = new Card[2];
 	public final int index;	
 	
@@ -93,7 +95,7 @@ public class HoleCards {
 		int bigCard = Math.max(c1.index, c2.index);
 		
 		//triangular numbers!
-		int cardsBefore = 0;		
+		int cardsBefore = 0;
 		for (int i = 0; i < smallCard; i++) {
 			cardsBefore += 51 - i;
 		}

@@ -1,9 +1,42 @@
 import java.util.Arrays;
 
-public final class Util {
+public class Util {
 	
 	//private constructor
 	private Util() {		
+	}
+	
+	public static long factorial(int x) {
+		long ans = 1;
+		for (int i = 2; i < x + 1; i++) {
+			ans *= i;
+		}
+		return ans;
+	}
+	
+	public static int bino(int n, int k) {
+		double answer = 1;
+		
+		for (int i = 1; i < k + 1; i++) {
+			
+			answer *= ((n + 1 - i) / (double) i);
+			//System.out.println("i is " + i + ", answer is " + answer + ", just multipled by " + (n + 1 - i));
+		}
+		
+		return (int) answer;
+	}
+	
+	public static int combinadic(int[] indices) {
+		
+		int[] indicesClone = indices.clone();
+		
+		Arrays.sort(indicesClone);
+		
+		int sum = 0;
+		for (int i = 0; i < indicesClone.length; i++) {
+			sum += bino(indicesClone[i], indicesClone.length - i);
+		}
+		return sum;
 	}
 
 	public void generateAliasTable(double[] rawWeightInput) {

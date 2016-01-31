@@ -164,8 +164,56 @@ public class HoleCardsRange {
 		
 		for (int i = 0; i < weights.length; i++) {
 			weights[i] *= multiplier;
-		}	
-		
+		}		
 	}
 	
+	public static HoleCardsRange parse(String formattedHands) {
+		
+		double[] weights = new double[HoleCards.numberOfHoleCards];
+		
+		String[] splitHands = formattedHands.split("[,]");
+		
+		for (int i = 0; i < splitHands.length; i++) {
+			int indexOfColon = splitHands[i].indexOf(':');
+			double weight = Double.parseDouble(splitHands[i].substring(indexOfColon + 1));
+			
+			if (indexOfColon == 4) { //AbCd form
+				Card firstCard = Card.getCard(splitHands[i].substring(0, 1), splitHands[i].substring(1, 2));
+				Card secondCard = Card.getCard(splitHands[i].substring(2, 3), splitHands[i].substring(3, 4));
+				weights[HoleCards.getIndex(firstCard, secondCard)] = weight;
+			}
+			else if (indexOfColon == 2 && splitHands[i].charAt(0) == splitHands[i].charAt(1)) {//AA form, pocket pair
+				for (int j = 0; j < 4; j++) {
+					for (int k = j + 1; k < 4; k++) {
+						weights[HoleCards.getIndex(Card.getCard(splitHands[i].charAt(0), j), Card.getCard(splitHands[i].charAt(0), k))] = weight;
+					}
+				}
+			}
+			else if (indexOfColon == 2 && splitHands[i].charAt(0) != splitHands[i].charAt(1)) {//AC form
+				for (int j = 0; j < 16; j++) { //no 4x4 inner loop using smart indices
+					weights[HoleCards.getIndex(Card.getCard(splitHands[i].charAt(0), j / 4), Card.getCard(splitHands[i].charAt(1), j % 4))] = weight;
+				}
+			}
+			else if (indexOfColon == 3 && splitHands[i].charAt(2) == 's') {//ACs form, suited form
+				for (int j = 0; j < 4; j++) {
+					weights[HoleCards.getIndex(Card.getCard(splitHands[i].charAt(0), j), Card.getCard(splitHands[i].charAt(1), j))] = weight;
+				}
+			}
+			else if (indexOfColon == 3 && splitHands[i].charAt(2) == 'o') {//ACo form, offsuit form
+				for (int j = 0; j < 4; j++) {
+					for (int k = 0; k < 4; k++) {
+						if (j == k) { //skip suited forms
+							continue;
+						}
+						weights[HoleCards.getIndex(Card.getCard(splitHands[i].charAt(0), j), Card.getCard(splitHands[i].charAt(1), k))] = weight;
+					}		
+				}
+			}
+			else {
+				throw new IllegalArgumentException("string cannot be parsed! " + splitHands[i]);
+			}		
+		}	
+		
+		return new HoleCardsRange(weights);
+	}	
 }

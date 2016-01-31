@@ -9,8 +9,8 @@ public class FlopRange {
 	Random rng = new Random();	
 		
 	public FlopRange(double[] weights) {	
-		if (weights.length != 1326) {
-			throw new IllegalArgumentException("weights must be length 1326, current length is " + weights.length);
+		if (weights.length != Flop.numberOfFlops) {
+			throw new IllegalArgumentException("weights must be length 22100, current length is " + weights.length);
 		}
 		
 		double sum = 0;
@@ -26,7 +26,7 @@ public class FlopRange {
 		}
 		this.sum = sum;
 		
-		this.weights = new double[1326];
+		this.weights = new double[Flop.numberOfFlops];
 		//normalisation, making all weights sum to 1.
 		for (int i = 0; i < weights.length; i++) {
 			this.weights[i] = weights[i] * (1.0 / sum);
@@ -52,19 +52,19 @@ public class FlopRange {
 	}
 	
 	public void generateAliasTable() {		
-		double[] multiplied = new double[1326];
+		double[] multiplied = new double[22100];
 		for (int i = 0; i < multiplied.length; i++){
-			multiplied[i] = weights[i] * 1326;
+			multiplied[i] = weights[i] * 22100;
 		}
 		
-		alias = new int[1326];
+		alias = new int[Flop.numberOfFlops];
 		for (int i = 0; i < alias.length; i++) {
 			alias[i] = -2;
 		}
 		
-		prob = new double[1326];
+		prob = new double[Flop.numberOfFlops];
 		
-		boolean[] removed = new boolean[1326];
+		boolean[] removed = new boolean[22100];
 		for (int i = 0; i < removed.length; i++) {
 			removed[i] = false;
 		}	
@@ -119,8 +119,27 @@ public class FlopRange {
 			if (weights[i] == 0) {
 				continue;
 			}
-			s += HoleCards.getHoleCards(i) + ":" + weights[i] * sum + ",\n";
+			s += Flop.getFlop(i) + ":" + weights[i] * sum + ",\n";
 		}
 		return s;
+	}
+	
+	public static FlopRange parse(String range) {
+		double[] weights = new double[Flop.numberOfFlops];
+		
+		
+		String[] flops = range.split("[\n]");
+		
+		for (int i = 0; i < flops.length; i++) {
+			
+			Card[] cards = new Card[3];
+			for (int j = 0; j < 3; j++) {
+				cards[j] = Card.getCard(flops[i].substring(i * 2, i * 2 + 1), flops[i].substring(i * 2 + 1, i * 2 + 2));
+			}
+						
+			weights[Flop.indexOf(cards[0], cards[1], cards[2])] = Double.parseDouble(range.substring(1));
+		}
+		
+		return new FlopRange(weights);
 	}
 }
