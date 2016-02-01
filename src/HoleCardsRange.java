@@ -174,7 +174,15 @@ public class HoleCardsRange {
 		
 		for (int i = 0; i < splitHands.length; i++) {
 			int indexOfColon = splitHands[i].indexOf(':');
-			double weight = Double.parseDouble(splitHands[i].substring(indexOfColon + 1));
+			double weight = -2;
+			
+			if (indexOfColon == -1) {
+				weight = 1;
+			}
+			else {
+				weight = Double.parseDouble(splitHands[i].substring(indexOfColon + 1));
+			}
+			
 			
 			if (indexOfColon == 4) { //AbCd form
 				Card firstCard = Card.getCard(splitHands[i].substring(0, 1), splitHands[i].substring(1, 2));

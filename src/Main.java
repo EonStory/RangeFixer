@@ -31,7 +31,6 @@ public class Main {
 		HoleCardsRange fixedActiveRange = MonteCarlo.runHoleCards(1000000000l, foldedRanges, activeRange);
 		fixedActiveRange.deSuit();
 		System.out.println(fixedActiveRange);
-		//combinadics are simple
 		
 	}
 }
