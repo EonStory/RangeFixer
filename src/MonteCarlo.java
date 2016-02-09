@@ -44,7 +44,22 @@ public class MonteCarlo {
 			fixedRange[i] = fixedRange[i] * (1.0 / max);
 		}		
 		
-		return new HoleCardsRange(fixedRange);		
+		HoleCardsRange bob = new HoleCardsRange(fixedRange);
+		
+		if (activeRange.isSuitSymmetrical()) {
+			boolean clean = true;
+			for (int i = 0; i < foldedRanges.length; i++) {
+				if (foldedRanges[i].isSuitSymmetrical() == false) {
+					clean = false;
+					break;
+				}
+			}
+			if (clean) {
+				bob.makeThisSuitSymmetrical();
+			}
+		}
+		
+		return bob;		
 	}
 	
 	

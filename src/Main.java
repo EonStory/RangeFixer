@@ -29,7 +29,7 @@ public class Main {
 		
 
 		HoleCardsRange fixedActiveRange = MonteCarlo.runHoleCards(1000000000l, foldedRanges, activeRange);
-		fixedActiveRange.deSuit();
+		fixedActiveRange.makeThisSuitSymmetrical();
 		System.out.println(fixedActiveRange);
 		
 	}

@@ -126,8 +126,21 @@ public class HoleCardsRange {
 	}
 	
 	
+	public boolean isSuitSymmetrical() {//checks if all combinations of a given card type have same weight. ie AsAd = AsAc. AsKs = AdKd etc.
+		for (int i = 0; i < weights.length; i++) {
+			int[] indexesOfAllSuits = HoleCards.equivs[i];
+			for (int j = 0; j < indexesOfAllSuits.length; j++) {
+				if (weights[i] != weights[indexesOfAllSuits[j]]) {
+					return false;
+				}
+			}			
+		}
+		
+		return true;
+	}
+	
 	//averages all suits of each hole cards.
-	public void deSuit() {
+	public void makeThisSuitSymmetrical() {
 		double[] weights2 = new double[weights.length];
 		for (int i = 0; i < weights.length; i++) {
 			int[] indexesOfAllSuits = HoleCards.equivs[i];
