@@ -8,7 +8,7 @@ public class HoleCardsRange {
 	private double sum;
 	
 	Random rng = new Random();	
-		
+	
 	public HoleCardsRange(double[] weights) {	
 		if (weights.length != 1326) {
 			throw new IllegalArgumentException("weights must be length 1326, current length is " + weights.length);
@@ -141,8 +141,7 @@ public class HoleCardsRange {
 			
 			weights2[i] = sum / indexesOfAllSuits.length;			
 		}
-		weights = weights2;
-		
+		weights = weights2;		
 		
 		for (int i = 0; i < weights.length; i++) {
 			//System.out.println("weights " + i + " is " + weights[i]);
@@ -172,17 +171,21 @@ public class HoleCardsRange {
 		double[] weights = new double[HoleCards.numberOfHoleCards];		
 		String[] splitHands = formattedHands.split("[,]");
 		
+		for (int i = 0; i < splitHands.length;i++) {
+			System.out.println(i + "_" + splitHands[i] + "_");
+		}
+		
 		for (int i = 0; i < splitHands.length; i++) {
 			int indexOfColon = splitHands[i].indexOf(':');
 			double weight = -2;
 			
-			if (indexOfColon == -1) {
+			if (indexOfColon == -1) {//it treats hands without colon or weight as though they end with ":1"
 				weight = 1;
+				indexOfColon = splitHands[i].length(); 
 			}
 			else {
 				weight = Double.parseDouble(splitHands[i].substring(indexOfColon + 1));
-			}
-			
+			}			
 			
 			if (indexOfColon == 4) { //AbCd form
 				Card firstCard = Card.getCard(splitHands[i].substring(0, 1), splitHands[i].substring(1, 2));
@@ -196,7 +199,7 @@ public class HoleCardsRange {
 					}
 				}
 			}
-			else if (indexOfColon == 2 && splitHands[i].charAt(0) != splitHands[i].charAt(1)) {//AC form
+			else if (indexOfColon == 2 && splitHands[i].charAt(0) != splitHands[i].charAt(1)) {//AC form, two unique cards suited or offsuit
 				for (int j = 0; j < 16; j++) { //no 4x4 inner loop using smart indices
 					weights[HoleCards.getIndex(Card.getCard(splitHands[i].charAt(0), j / 4), Card.getCard(splitHands[i].charAt(1), j % 4))] = weight;
 				}
@@ -212,7 +215,9 @@ public class HoleCardsRange {
 						if (j == k) { //skip suited forms
 							continue;
 						}
+						System.out.println("can the following string be parsed? " + splitHands[i]);
 						weights[HoleCards.getIndex(Card.getCard(splitHands[i].charAt(0), j), Card.getCard(splitHands[i].charAt(1), k))] = weight;
+						System.out.println("Yes, the following string can be parsed  " + splitHands[i]);
 					}		
 				}
 			}

@@ -69,7 +69,13 @@ public class Card implements Comparable<Card>{
 		throw new IllegalArgumentException("not in existence");
 	}	
 	
-	public static Card getCard(int rank, int suit) {		
+	public static Card getCard(char rank, int suit) {
+		String s = "";
+		s += rank;
+		return Card.getCard(s, suitNames[suit]);
+	}
+	
+	public static Card getCard(int rank, int suit) {
 		return Card.getCard(suit * 13 + rank);
 	}
 	
