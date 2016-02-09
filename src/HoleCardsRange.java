@@ -182,12 +182,8 @@ public class HoleCardsRange {
 	public static HoleCardsRange parse(String formattedHands) {
 		
 		double[] weights = new double[HoleCards.numberOfHoleCards];		
-		String[] splitHands = formattedHands.split("[,]");
-		
-		for (int i = 0; i < splitHands.length;i++) {
-			System.out.println(i + "_" + splitHands[i] + "_");
-		}
-		
+		String[] splitHands = formattedHands.split("[,]");		
+			
 		for (int i = 0; i < splitHands.length; i++) {
 			int indexOfColon = splitHands[i].indexOf(':');
 			double weight = -2;
@@ -228,9 +224,7 @@ public class HoleCardsRange {
 						if (j == k) { //skip suited forms
 							continue;
 						}
-						System.out.println("can the following string be parsed? " + splitHands[i]);
 						weights[HoleCards.getIndex(Card.getCard(splitHands[i].charAt(0), j), Card.getCard(splitHands[i].charAt(1), k))] = weight;
-						System.out.println("Yes, the following string can be parsed  " + splitHands[i]);
 					}		
 				}
 			}
