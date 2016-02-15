@@ -34,7 +34,7 @@ public class Util {
 		
 		int sum = 0;
 		for (int i = 0; i < indicesClone.length; i++) {
-			sum += bino(indicesClone[i], indicesClone.length - i);
+			sum += bino(indicesClone[indicesClone.length - 1 - i], indicesClone.length - i);
 		}
 		return sum;
 	}

@@ -66,7 +66,7 @@ public class Card implements Comparable<Card>{
 			}
 		}
 		
-		throw new IllegalArgumentException("not in existence");
+		throw new IllegalArgumentException("not in existence: " + rank + "" + suit);
 	}	
 	
 	public static Card getCard(char rank, int suit) {

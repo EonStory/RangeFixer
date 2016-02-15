@@ -42,10 +42,11 @@ public class gui extends JFrame {
 	private JTextField ipRangeFixed;
 	private JLabel lblFlopRange;
 	private JScrollPane scrollPane;
-	private JEditorPane editorPane;
+	private JEditorPane flopInputField;
 	private JLabel lblFoldedRange_4;
 	private JLabel lblFoldedRange_5;
 	private JLabel lblFoldedRange_6;
+	private JTextField txtRangeFixer;
 	/**
 	 * Launch the application.
 	 */
@@ -90,7 +91,7 @@ public class gui extends JFrame {
 		oopRangeFixed.setBounds(379, 65, 122, 20);
 		oopRangeFixed.setEditable(false);
 		contentPane.add(oopRangeFixed);
-		oopRangeFixed.setColumns(10);
+		oopRangeFixed.setColumns(10);		
 		
 		JLabel lblIpRange = new JLabel("IP Range");
 		lblIpRange.setFont(new Font("Segoe UI", Font.PLAIN, 11));
@@ -165,11 +166,11 @@ public class gui extends JFrame {
 		scrollPane.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER);
 		contentPane.add(scrollPane);
 		
-		editorPane = new JEditorPane();
-		scrollPane.setViewportView(editorPane);
-		editorPane.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
+		flopInputField = new JEditorPane();
+		scrollPane.setViewportView(flopInputField);
+		flopInputField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
 		
-		lblSimulations = new JLabel("Simulations x10000000");
+		lblSimulations = new JLabel("Simulations x1000000");
 		lblSimulations.setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		lblSimulations.setBounds(5, 367, 145, 14);
 		contentPane.add(lblSimulations);
@@ -218,36 +219,50 @@ public class gui extends JFrame {
 		scrollPane_1.setBounds(379, 296, 122, 57);
 		contentPane.add(scrollPane_1);
 		
-		JTextPane textPane = new JTextPane();
-		textPane.setSelectionColor(UIManager.getColor("Button.background"));
-		scrollPane_1.setViewportView(textPane);
-		textPane.setBorder(new LineBorder(new Color(0, 0, 0)));
-		textPane.setBackground(UIManager.getColor("Button.background"));
+		JTextPane flopOutputField = new JTextPane();
+		flopOutputField.setSelectionColor(UIManager.getColor("Button.background"));
+		scrollPane_1.setViewportView(flopOutputField);
+		flopOutputField.setBorder(new LineBorder(new Color(0, 0, 0)));
+		flopOutputField.setBackground(UIManager.getColor("Button.background"));
 		
-		TestButton tstbtnCopyToClipboard = new TestButton();
-		tstbtnCopyToClipboard.setText("Copy to clipboard");
-		tstbtnCopyToClipboard.setBounds(511, 64, 132, 20);
-		contentPane.add(tstbtnCopyToClipboard);
+		SexyButton oopCopyButton = new SexyButton();
+		oopCopyButton.setText("Copy to clipboard");
+		oopCopyButton.setBounds(511, 64, 132, 20);
+		contentPane.add(oopCopyButton);
 		
-		TestButton testButton = new TestButton();
-		testButton.setText("Copy to clipboard");
-		testButton.setBounds(511, 91, 132, 20);
-		contentPane.add(testButton);
+		SexyButton ipCopyButton = new SexyButton();
+		ipCopyButton.setText("Copy to clipboard");
+		ipCopyButton.setBounds(511, 91, 132, 20);
+		contentPane.add(ipCopyButton);
 		
-		TestButton tstbtnCopyToClipboard_1 = new TestButton();
-		tstbtnCopyToClipboard_1.setText("Copy to clipboard");
-		tstbtnCopyToClipboard_1.setBounds(511, 296, 122, 57);
-		contentPane.add(tstbtnCopyToClipboard_1);
+		SexyButton flopCopyButton = new SexyButton();
+		flopCopyButton.setText("Copy to clipboard");
+		flopCopyButton.setBounds(511, 296, 122, 57);
+		contentPane.add(flopCopyButton);
 		
-		TestButton tstbtnSimulate = new TestButton();
-		tstbtnSimulate.setText("Simulate");
+		SexyButton tstbtnSimulate = new SexyButton();
+		tstbtnSimulate.setText("Start");
 		tstbtnSimulate.setBounds(188, 364, 122, 20);
 		contentPane.add(tstbtnSimulate);
 		
 		JTextField[] inputRangeFields = new JTextField[] {oopRangeField, ipRangeField, foldedRange1Field, foldedRange2Field, foldedRange3Field, foldedRange4Field, foldedRange5Field, foldedRange6Field, foldedRange7Field};
 		
 		JTextField[] outputRangeFields = new JTextField[] {oopRangeFixed, ipRangeFixed};
-				
-		RunListener bigEars = new RunListener(inputRangeFields, outputRangeFields, tstbtnSimulate, runField);
+			
+		RunListener runEars = new RunListener(inputRangeFields, outputRangeFields, tstbtnSimulate, runField, flopInputField, flopOutputField);
+		
+		CopyListener oopCopier = new CopyListener(oopCopyButton, oopRangeFixed);
+		CopyListener ipCopier = new CopyListener(ipCopyButton, ipRangeFixed);
+		CopyListener flopCopier = new CopyListener(flopCopyButton, flopOutputField);
+		
+		txtRangeFixer = new JTextField();
+		txtRangeFixer.setBorder(null);
+		txtRangeFixer.setEditable(false);
+		txtRangeFixer.setFont(new Font("Lucida Console", Font.BOLD, 26));
+		txtRangeFixer.setText("Range Fixer");
+		txtRangeFixer.setBounds(56, 11, 364, 49);
+		contentPane.add(txtRangeFixer);
+		txtRangeFixer.setColumns(10);
+		
 	}
 }

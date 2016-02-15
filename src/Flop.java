@@ -10,12 +10,10 @@ public class Flop {
 	
 	
 	static {
-		int counter = 0;
 		for (int i = 0; i < 52; i++) {
 			for (int j = i + 1; j < 52; j++) {
 				for (int k = j + 1; k < 52; k++) {
-					allFlops[counter] = new Flop(Card.getCard(i), Card.getCard(j), Card.getCard(k), counter);
-					counter++;
+					allFlops[Util.combinadic(new int[] {i, j, k})] = new Flop(Card.getCard(i), Card.getCard(j), Card.getCard(k), Util.combinadic(new int[] {i, j, k}));
 				}
 			}
 		}

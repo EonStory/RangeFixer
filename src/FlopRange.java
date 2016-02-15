@@ -15,9 +15,6 @@ public class FlopRange {
 		
 		double sum = 0;
 		for (int i = 0; i < weights.length; i++) {
-			if (weights[i] < 0 || weights[i] > 1) {
-				throw new IllegalArgumentException("weights x must satisfy 0 <= x <= 1, x for value " + i + " is " + weights[i]);
-			}
 			sum += weights[i];			
 		}
 		
@@ -119,7 +116,7 @@ public class FlopRange {
 			if (weights[i] == 0) {
 				continue;
 			}
-			s += Flop.getFlop(i) + ":" + weights[i] * sum + ",\n";
+			s += Flop.getFlop(i) + ":" + weights[i] * sum + "\n";
 		}
 		return s;
 	}
@@ -127,17 +124,15 @@ public class FlopRange {
 	public static FlopRange parse(String range) {
 		double[] weights = new double[Flop.numberOfFlops];
 		
-		
-		String[] flops = range.split("[\n]");
+		String[] flops = range.split("[\n]");		
 		
 		for (int i = 0; i < flops.length; i++) {
-			
 			Card[] cards = new Card[3];
 			for (int j = 0; j < 3; j++) {
-				cards[j] = Card.getCard(flops[i].substring(i * 2, i * 2 + 1), flops[i].substring(i * 2 + 1, i * 2 + 2));
+				cards[j] = Card.getCard(flops[i].substring(j * 2, j * 2 + 1), flops[i].substring(j * 2 + 1, j * 2 + 2));
 			}
 						
-			weights[Flop.indexOf(cards[0], cards[1], cards[2])] = Double.parseDouble(range.substring(1));
+			weights[Flop.indexOf(cards[0], cards[1], cards[2])] = Double.parseDouble(flops[i].substring(7));
 		}
 		
 		return new FlopRange(weights);

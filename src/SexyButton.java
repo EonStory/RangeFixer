@@ -9,16 +9,16 @@ import javax.swing.SwingUtilities;
 import javax.swing.border.BevelBorder;
 
 
-class TestButton extends JButton {
+class SexyButton extends JButton {
 
     private Color hoverBackgroundColor = new Color(234, 243, 255);
     private Color pressedBackgroundColor  = new Color(213, 232, 255);
 
-    public TestButton() {
+    public SexyButton() {
         this(null);
     }
 
-    public TestButton(String text) {
+    public SexyButton(String text) {
         super(text);
         super.setContentAreaFilled(false);
         this.setRequestFocusEnabled(false);
