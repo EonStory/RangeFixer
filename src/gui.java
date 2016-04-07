@@ -81,7 +81,6 @@ public class gui extends JFrame {
 		
 		oopRangeField = new JTextField();
 		oopRangeField.setBorder(new BevelBorder(BevelBorder.LOWERED, null, null, null, null));
-		oopRangeField.setFont(new Font("Segoe UI", Font.PLAIN, 11));
 		oopRangeField.setBounds(103, 65, 266, 20);
 		contentPane.add(oopRangeField);
 		oopRangeField.setColumns(10);

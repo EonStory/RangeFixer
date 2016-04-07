@@ -179,10 +179,12 @@ public class HoleCardsRange {
 		}		
 	}
 	
-	public static HoleCardsRange parse(String formattedHands) {
+	public static HoleCardsRange parse(String formattedHands) {		
+		
+		String cleanedInput = formattedHands.replaceAll("\\s+", "");
 		
 		double[] weights = new double[HoleCards.numberOfHoleCards];		
-		String[] splitHands = formattedHands.split("[,]");		
+		String[] splitHands = cleanedInput.split("[,]");		
 			
 		for (int i = 0; i < splitHands.length; i++) {
 			int indexOfColon = splitHands[i].indexOf(':');

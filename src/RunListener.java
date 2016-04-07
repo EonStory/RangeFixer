@@ -74,8 +74,7 @@ public class RunListener implements ActionListener {
 			outputField3 = MonteCarlo.runFlop(numberOfSims, foldedRangesWithEmptyRemoved, fr).toString();
 		}
 		else {
-			System.out.println(":o its empty");
-			flopOutputField.setText("oh noes");
+			System.out.println("Nothing to run.");
 		}
 				
 		outputFields[0].setText(outputField1);
